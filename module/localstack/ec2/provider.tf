@@ -1,7 +1,15 @@
+terraform {
+  backend "s3" {
+    bucket = "localstack-ec2-s3"
+    key    = "build/test/terraform.tfstate"
+    region = var.region
+  }
+}
+
 provider "aws" {
-  region                      = "us-west-2"
-  access_key                  = "local"
-  secret_key                  = "local"
+  region                      = var.region
+  access_key                  = var.access_key
+  secret_key                  = var.secret_key
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
@@ -22,7 +30,7 @@ provider "aws" {
     rds            = var.localstack_ip
     redshift       = var.localstack_ip
     route53        = var.localstack_ip
-    s3             = "http://s3.${var.localstack_ip}.localstack.cloud:4566"
+    s3             = "http://s3.${var.s3_host}.localstack.cloud:4566"
     secretsmanager = var.localstack_ip
     ses            = var.localstack_ip
     sns            = var.localstack_ip
