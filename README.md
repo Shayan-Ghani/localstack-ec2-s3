@@ -1,4 +1,4 @@
-# TryStack
+# Localstack-ec2-s3
 
 Copyright © 2023 Shayan Ghani shayanghani1384@gmail.com
 
